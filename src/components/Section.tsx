@@ -217,4 +217,4 @@ export default function Section({sectionData, timer}: Props){
       </div>
     </div>
   </>
-}
+} 
