@@ -1,0 +1,55 @@
+$flexPropValList: (
+    "fs": flex-start,
+    "fe": flex-end,
+    "c": center,
+    "sb": space-between,
+    "sa": space-around,
+    "se": space-evenly,
+    "ini": initial,
+    "inh": inherit,
+);
+$flexDirValList:(
+    "c": column,
+);
+@mixin displayProp($prop){
+  @if $prop and map-has-key($prop, "jc"){
+      $propVal: map-get($prop, "jc");
+      justify-content: map-get($flexPropValList, $propVal);
+  }
+  @if $prop and map-has-key($prop, "ai"){
+      $propVal: map-get($prop, "ai");
+      align-items: map-get($flexPropValList, $propVal);
+  }
+  @if $prop and map-has-key($prop, "ac"){
+      $propVal: map-get($prop, "ac");
+      align-content: map-get($flexPropValList, $propVal);
+  }
+  @if $prop and map-has-key($prop, "fd"){
+      $propVal: map-get($prop, "fd");
+      flex-direction: map-get($flexDirValList, $propVal);
+  }
+}
+@mixin flex($prop:false){ //@include flex((jc:c, ai:c))
+  display:flex;
+  @include displayProp($prop);
+}
+@mixin grid($prop:false){ //@include grid((jc:c, ai:c))
+  display:grid;
+  @include displayProp($prop);
+}
+@mixin square($val:16px){
+  height:$val;
+  width:$val;
+}
+@mixin desktop{
+  @media screen and (min-width:600px){
+      @content;
+  }
+}
+@mixin mobile{
+  @media screen and (max-width:600px){
+      @content;
+  }
+}
+
+$cardColor: rgb(230, 230, 230);

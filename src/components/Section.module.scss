@@ -1,0 +1,156 @@
+@use "lib" as *;
+
+$borderWidth:1rem;
+$insideColor: rgb(113, 113, 113);
+$wall:rgb(35, 35, 35);
+$sectionWidth: 10rem;
+
+.body{
+  @include grid;
+}
+.parkingSections{
+  background:$wall;
+  height:25rem;
+  border: $borderWidth solid $wall;
+  position:relative;
+  @include flex;
+  gap:2rem;
+}
+.parkingSection{
+  background:$insideColor;
+  width:$sectionWidth;
+  @include flex((jc:c, ai:c));
+}
+.entrance, .addCars, .exit{
+  position:absolute;
+  bottom:-$borderWidth;
+  background:$insideColor;
+  height:2rem;
+  min-width: 5rem;
+  text-align: center;
+}
+.entrance{
+  top:-$borderWidth;
+  background:$insideColor;
+  height:2rem;
+}
+.addCars{
+  text-align: center;
+  background:$cardColor;
+  border-radius: 8px;
+  top: -11rem;
+  bottom:unset;
+  @include grid;
+  gap:4px;
+  padding:8px;
+  height:unset;
+  border:2px solid black;
+}
+.parkingSpaces{
+  @include square(80%);
+  background:rgb(189, 189, 24);
+  @include grid;
+  grid-template-columns: 1fr 1fr;
+  gap:4px;
+}
+.parkingSpace{
+  background:$insideColor;
+  @include flex((jc:c, ai:c));
+  >div{
+    min-height:1rem;
+  }
+  &:nth-child(odd){
+    .car_s{
+      border-right-width:1rem;
+      border-radius: 2px 8px 8px 2px;
+    }
+    .car_m{
+      border-right-width:1rem;
+      border-radius: 2px 8px 8px 2px;
+    }
+    .car_l{
+      border-right-width:1rem;
+      border-radius: 2px 8px 8px 2px;
+    }
+  }
+  &:nth-child(even){
+    .car_s{
+      border-left-width:1rem;
+      border-radius: 8px 2px 2px 8px;
+    }
+    .car_m{
+      border-left-width:1rem;
+      border-radius: 8px 2px 2px 8px;
+    }
+    .car_l{
+      border-left-width:1rem;
+      border-radius: 8px 2px 2px 8px;
+    }
+  }
+}
+
+.car_s, .car_m, .car_l{
+  cursor: pointer;
+  @include flex((jc:c, ai:c));
+}
+.car_s{
+  background:#1e8c3f;
+  height:1rem;
+  width:2.5rem;
+  border-color:rgb(27, 183, 74);
+  border-style:solid;
+  border-width:0;
+}
+.car_m{
+  background:#8C1E20;
+  height:1.5rem;
+  width:2.5rem;
+  border-color:#d92c2f;
+  border-style:solid;
+  border-width:0;
+}
+.car_l{
+  background:#1f2894;
+  height:2rem;
+  width:3rem;
+  border-color:#4e56b7;
+  border-style:solid;
+  border-width:0;
+}
+
+.fee{
+  position:absolute;
+  text-shadow: 0 0 2px white;
+  font-weight: 600;
+}
+
+.checkedoutSection{
+  background:rgb(68, 165, 49);
+  padding:8px;
+  @include flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width:10rem + 2rem;
+}
+
+.checkedoutCar_s{
+  @extend .car_s;
+  width:1rem;
+  height:2.5rem;
+  border-top-width:1rem;
+  border-radius:8px 8px 2px 2px;
+}
+.checkedoutCar_m{
+  @extend .car_m;
+  width:1.5rem;
+  height:2.5rem;
+  border-top-width:1rem;
+  border-radius:8px 8px 2px 2px;
+}
+.checkedoutCar_l{
+  @extend .car_l;
+  width:2rem;
+  height:3rem;
+  border-top-width:1rem;
+  border-radius:8px 8px 2px 2px;
+}

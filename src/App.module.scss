@@ -1,0 +1,39 @@
+@use "lib" as *;
+
+#body{
+  @include flex;
+}
+#visualSection{
+  height:100vh;
+  width:100%;
+  @include flex((jc:c, ai:fs));
+  padding-top: 12rem;
+}
+
+#buyLot{
+  padding:1rem;
+  font-weight:700;
+  margin-left:3rem;
+  cursor: pointer;
+  @include grid;
+  gap:4px;
+  background:$cardColor;
+  border:2px solid black;
+  border-radius: 8px;
+  button{
+    font-weight:700;
+    padding:.5rem;
+  }
+}
+
+#timer{
+  position:absolute;
+  top:0;
+  left:0;
+}
+#parkingLot{
+  @include flex;
+}
+.car_S{
+  background:red;
+}
